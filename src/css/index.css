@@ -14,7 +14,7 @@
 
 .container-search input {
   display: inline-block;
-  height: 25px;
+  height: 30px;
   width: 250px;
   border-radius: 3px;
   padding-left: 10px;
@@ -23,7 +23,7 @@
 
 .container-search button {
   display: inline-block;
-  height: 32px;
+  height: 37px;
   border-radius: 3px;
   font-size: 20px;
   /* background-color: #DED06A; */
