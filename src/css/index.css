@@ -1,11 +1,15 @@
 .container-search {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: block;
   background-color: #3f56b4;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .container-search input {
@@ -22,25 +26,32 @@
   height: 30px;
   border-radius: 3px;
   font-size: 20px;
+  background-color: #DED06A;
 }
 
 /* для картинок */
 .photo-card {
-  display: inline-block;
+  display: flex;
 }
 
 .info {
   display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
-  margin-right: 10px;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   column-gap: 16px;
+  background-color: #DED06A;
+  border:1px solid  #3f56b4;
+  box-shadow: 10px 15px 15px red;
+}
+
+.gallery__image{
+  display: block;
 }
 
 .info-item {
    display: block;
-   text-align: center;  
+   text-align: center; 
+   
 }
 
 .gallery__item {
@@ -48,6 +59,7 @@
   object-fit: cover;
   background-repeat: no-repeat;
   overflow: hidden;
+  border-radius: 2px; 
 }
 
 .gallery__item img {
@@ -59,10 +71,54 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 65px auto;
   gap:12px; 
   justify-content: flex-start;
 
   margin-bottom: 20px;
 }
 
+.container-btnLoadMore{
+  display: block;
+  text-align: center;
+  margin-bottom: 100px;
+  height: 50px;
+  
+}
+
+.load-more{
+  height: 100%;
+  border-radius: 100px;
+  border: none;
+  background-color: inherit;
+}
+
+.loader {
+   width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+  margin:15px auto;
+  position: relative;
+  color: #3f56b4;
+  box-sizing: border-box;
+  animation: animloader 2s linear infinite;
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+  }
+  25% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
+  }
+  50% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
+  }
+  75% {
+    box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+  }
+  100% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+  }
+}
