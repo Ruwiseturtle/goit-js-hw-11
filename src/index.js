@@ -34,13 +34,13 @@ const callback = function (entries, observer) {
         const { target, isIntersecting, intersectionRatio } = entry;
 
         if (isIntersecting) {
+            hideLoading();
             getApiPictures(PAGE);
         }
     })
 }
 
 const observer = new IntersectionObserver(callback, options);
-// const target = document.querySelector('load-more');
 observer.observe(btnLoadMore);
 
 //-------------------------------------------------
@@ -53,12 +53,12 @@ form.addEventListener('submit', getPictures);
 function getPictures(e) {
   e.preventDefault();
     resetData();
-   
-    hideLoading();  
+    
   const { searchQuery } = e.currentTarget.elements;
   SEARCH_TERM = searchQuery.value;
   
-  getApiPictures(PAGE);
+//   getApiPictures(PAGE);
+    showLoading();
 }
 
 //ф-ція примайє сторінку, на якій потрібно взяти дані з API
@@ -73,7 +73,6 @@ function getApiPictures(page = 1) {
 //якщо дані витягуємо вдало, то кладемо їх в масив
 function renderData(dataPictures) {
     if (dataPictures.total === 0 || SEARCH_TERM === '') {
-        hideLoading();
         Notiflix.Notify.failure('Немає інформації по цьому запиту!');
         resetData();
     return;
@@ -87,7 +86,7 @@ function renderData(dataPictures) {
      Notiflix.Notify.success(`Hooray! We found ${TOTAL_HITS} images.`);
   }
     nextPage();
-    showLoading();
+    
 }
 
 //якщо дані витягуємо невдало
@@ -100,7 +99,11 @@ function errorfetchData() {
 function nextPage() {
   if (PER_PAGE * PAGE !== TOTAL_HITS && TOTAL_HITS >= PER_PAGE) {
       PAGE += 1;
-  } 
+      showLoading();
+    } 
+  else {
+      hideLoading();
+    }
   lightbox.refresh();
 }
 
