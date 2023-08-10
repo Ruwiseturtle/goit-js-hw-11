@@ -1,0 +1,68 @@
+.container-search {
+  display: block;
+  background-color: #3f56b4;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.container-search input {
+  display: inline-block;
+  height: 25px;
+  width: 300px;
+  border-radius: 3px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.container-search button {
+  display: inline-block;
+  height: 30px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+/* для картинок */
+.photo-card {
+  display: inline-block;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-wrap: wrap;
+  column-gap: 16px;
+}
+
+.info-item {
+   display: block;
+   text-align: center;  
+}
+
+.gallery__item {
+  width: calc((100% - 36px) / 4);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 260px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap:12px; 
+  justify-content: flex-start;
+
+  margin-bottom: 20px;
+}
+
