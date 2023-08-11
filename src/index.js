@@ -9,7 +9,7 @@ const IMAGE_TYPE = 'photo';
 const ORIENTATION = 'orientation';
 const SAFE_SERACH = 'true';
 let SEARCH_TERM = '';
-const PER_PAGE = '100';
+const PER_PAGE = '40';
 let TOTAL_HITS = 1;
 let PAGE = 1;
 
