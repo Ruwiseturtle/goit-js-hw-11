@@ -9,7 +9,7 @@ const IMAGE_TYPE = 'photo';
 const ORIENTATION = 'orientation';
 const SAFE_SERACH = 'true';
 let SEARCH_TERM = '';
-const PER_PAGE = '10';
+const PER_PAGE = '100';
 let TOTAL_HITS = 1;
 let PAGE = 1;
 
@@ -34,8 +34,9 @@ const callback = function (entries, observer) {
         const { target, isIntersecting, intersectionRatio } = entry;
 
         if (isIntersecting) {
-            hideLoading();
-            getApiPictures(PAGE);
+            
+          getApiPictures(PAGE);
+          
         }
     })
 }
@@ -66,13 +67,14 @@ function getApiPictures(page = 1) {
   let url = `${BASE_URL}?key=${API_KEY}&q=
                ${SEARCH_TERM}&image_type=${IMAGE_TYPE}&orientation=
                ${ORIENTATION}&safesearch=${SAFE_SERACH}&per_page=${PER_PAGE}&page=${PAGE}`;
-    
+  // hideLoading();
   fetchBreeds(url).then(renderData).catch(errorfetchData);
 }
 
 //якщо дані витягуємо вдало, то кладемо їх в масив
 function renderData(dataPictures) {
-    if (dataPictures.total === 0 || SEARCH_TERM === '') {
+  if (dataPictures.total === 0 || SEARCH_TERM === '') {
+    hideLoading();
         Notiflix.Notify.failure('Немає інформації по цьому запиту!');
         resetData();
     return;
@@ -90,7 +92,7 @@ function renderData(dataPictures) {
 
 //якщо дані витягуємо невдало
 function errorfetchData() {
-    
+  hideLoading();  
   resetData();
   Notiflix.Notify.failure('Не вдалося загрузити картинки з серверу!');
 }
