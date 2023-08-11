@@ -86,7 +86,6 @@ function renderData(dataPictures) {
      Notiflix.Notify.success(`Hooray! We found ${TOTAL_HITS} images.`);
   }
     nextPage();
-    
 }
 
 //якщо дані витягуємо невдало
@@ -125,7 +124,7 @@ function hideLoading() {
 Notiflix.Notify.init({
   width: '480px',
   position: 'right-top',
-  distance: '90px',
+  distance: '10px',
   opacity: 1,
   fontSize: '20px',
   clickToClose: true,

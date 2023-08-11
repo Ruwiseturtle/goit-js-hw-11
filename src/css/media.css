@@ -1,0 +1,67 @@
+@media screen and (max-width: 400px) {
+    .gallery__item{
+         width: 300px;
+    }
+    .container-search input{
+        width: 95%;
+        
+    }
+
+    .container-search button{
+         width: calc(100% -70% - 15px);
+    }
+
+    .search-form{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .gallery{
+        margin-top: 95px;
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
+     .gallery{
+        display: block;
+        justify-content: center;
+     }
+    .gallery__item{
+         min-width: 300px;
+         margin-left: auto;
+         margin-right: auto;
+         margin-bottom: 10px;
+    }
+   
+}
+
+/* tablet styles * для планшетів */
+@media screen and (min-width: 768px) {
+    .gallery{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .gallery__item{
+         width: calc((100% - 24px)/2);
+         height: 350px;
+         justify-content: flex-start;
+    }
+
+    .gallery__item img{
+         height: 280px;
+    }
+
+    .info{
+        height: 700px;
+    }
+}
+
+/* для більших за планшет */
+@media screen and (min-width: 1158px) {
+    .gallery__item{
+        width: calc((100% - 36px) / 4);  
+    }
+}
