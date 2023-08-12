@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API_KEY = '38710040-e4c1e1eb16f2bb925e73b2921';
 
-export function fetchBreeds(URL) {
-  return axios.get(URL).then(result => {
+export async function fetchBreeds(URL) {
+  return await axios.get(URL).then(result => {
     return result.data;
   });
 }

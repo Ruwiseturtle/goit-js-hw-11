@@ -17,12 +17,13 @@ const form = document.querySelector('.search-form');
 const btnLoadMore = document.querySelector('.load-more');
 const list = document.querySelector('ul.gallery');
 
-//--------налаштування для simpleLightBox---------
-let lightbox = new SimpleLightbox('.gallery a', {
-  caption: true,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+
+  //--------налаштування для simpleLightBox---------
+  let lightbox = new SimpleLightbox('.gallery a', {
+    caption: true,
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
 
 //-----створення та налаштування обсервера --------
 const options = {
@@ -57,6 +58,8 @@ function getPictures(e) {
   SEARCH_TERM = searchQuery.value.trim();
   
   if (SEARCH_TERM === '') {
+    resetData();
+    Notiflix.Notify.info('Для відображення картинок, введіть в поле вводу значення!');
     return;
   }
     showLoading();
@@ -64,7 +67,10 @@ function getPictures(e) {
 
 //ф-ція примайє сторінку, на якій потрібно взяти дані з API
 function getApiPictures(page = 1) {
-  
+  if (SEARCH_TERM === '') {
+    hideLoading();
+    return;
+  }
 
   let url = `${BASE_URL}?key=${API_KEY}&q=
                ${SEARCH_TERM}&image_type=${IMAGE_TYPE}&orientation=
@@ -77,29 +83,27 @@ function getApiPictures(page = 1) {
 function renderData(dataPictures) {
   if (dataPictures.total === 0) {
     hideLoading();
-        Notiflix.Notify.failure('Немає інформації по цьому запиту!');
-        resetData();
+    Notiflix.Notify.failure('Немає інформації по цьому запиту!');
+    resetData();
     return;
   }
-    
+
   TOTAL_HITS = dataPictures.totalHits;
   let markup = createMarkupPictures(dataPictures);
   list.insertAdjacentHTML('beforeend', markup);
-  
+
+  lightbox.refresh(); 
+
   console.log(Math.ceil(TOTAL_HITS / PER_PAGE) + ' ' + PAGE);
   if (Math.ceil(TOTAL_HITS / PER_PAGE) === PAGE) {
     hideLoading();
     return;
   }
 
-   
-
-  
-
   if (PAGE === 1) {
-     Notiflix.Notify.success(`Hooray! We found ${TOTAL_HITS} images.`);
+    Notiflix.Notify.success(`Hooray! We found ${TOTAL_HITS} images.`);
   }
-    nextPage();
+  nextPage();
 }
 
 //якщо дані витягуємо невдало
@@ -118,7 +122,6 @@ function nextPage() {
     } else {
       hideLoading();
     }
-  lightbox.refresh();
 }
 
 //ф-ція скидає усі дані і очищає сторінку
